@@ -1,0 +1,1 @@
+stm32l4roboule\startup_stm32l432xx.o: startup_stm32l432xx.s
