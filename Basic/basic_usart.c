@@ -21,7 +21,7 @@ void basic_usart2_init(int baudrate)
 	// No parity bit
 	RCC->APB1ENR1 |= 0x00020000; //clock
 	usart2.Instance = USART2;
-  usart2.Init.BaudRate = 38400;
+  usart2.Init.BaudRate = baudrate;
   usart2.Init.WordLength = UART_WORDLENGTH_8B;
   usart2.Init.StopBits = UART_STOPBITS_1;
   usart2.Init.Parity = UART_PARITY_NONE;
@@ -48,11 +48,11 @@ void basic_usart2_send(uint8_t* data, uint16_t count)
 
 void basic_usart2_read(uint8_t* data, uint16_t count)
 {
-	int k;
-	for(k=0;k<count;k++)
-	{
-		data[k] = buffer[k];
-	}
+	//int k;
+	//for(k=0;k<count;k++)
+	//{
+		data[bufferCounter] = buffer[bufferCounter];
+	//}
 }
 
 
@@ -61,8 +61,12 @@ void USART2_IRQHandler(void)
 	//if interrupt because reception
 	if(USART2->ISR & USART_ISR_RXNE)
 	{
-		HAL_UART_Receive(&usart2,buffer,READ_BUFFER_SIZE,1000);
-		//HAL_UART_Receive_IT(&usart2,buffer,1);
+		//HAL_UART_Receive(&usart2,buffer,READ_BUFFER_SIZE,1000);
+		if (bufferCounter != 10)
+			bufferCounter ++;
+		else bufferCounter = 0;
+		HAL_UART_Receive_IT(&usart2,buffer+bufferCounter,1);
+		
 	}
 	
 	//__HAL_UART_CLEAR_IT(&usart2);
