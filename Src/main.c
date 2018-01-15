@@ -8,8 +8,10 @@
 #include "../Basic/basic_i2c.h"
 #include "../Basic/basic_led.h"
 #include "../Basic/basic_usart.h"
+#include "../Basic/basic_pwm.h"
 #include "../App/IMU6050.h"
 #include "../App/HC05.h"
+
 
 float accelVect[3]; 
 uint8_t data[4] = "AT\r\n";
@@ -23,9 +25,9 @@ int main(void)
 	HAL_Init();
 	basic_init_clock();
 	basic_init_gpio();
-	basic_i2c_init();
+//	basic_i2c_init();
 	basic_led_init();
-	basic_usart2_init(38400);
+//	basic_usart2_init(38400);
 	
 	//IMU6050_Init();
 	//IMU6050_Test_Sensor();
@@ -40,9 +42,12 @@ int main(void)
 	}*/
 	
 	
-	basic_usart2_send(data,4);
+	//basic_usart2_send(data,4);
+//	HAL_Delay(2);
+//	basic_usart2_read(recev,10);
+	
 	HAL_Delay(2);
-	basic_usart2_read(recev,10);
+	basic_pwm_init();
 	
   while (1)
   {

@@ -48,11 +48,11 @@ void basic_usart2_send(uint8_t* data, uint16_t count)
 
 void basic_usart2_read(uint8_t* data, uint16_t count)
 {
-	//int k;
-	//for(k=0;k<count;k++)
-	//{
-		data[bufferCounter] = buffer[bufferCounter];
-	//}
+	int k;
+	for(k=0;k<count;k++)
+	{
+		data[(bufferCounter-k)%READ_BUFFER_SIZE] = buffer[bufferCounter];
+	}
 }
 
 
@@ -62,7 +62,7 @@ void USART2_IRQHandler(void)
 	if(USART2->ISR & USART_ISR_RXNE)
 	{
 		//HAL_UART_Receive(&usart2,buffer,READ_BUFFER_SIZE,1000);
-		if (bufferCounter != 10)
+		if (bufferCounter != READ_BUFFER_SIZE)
 			bufferCounter ++;
 		else bufferCounter = 0;
 		HAL_UART_Receive_IT(&usart2,buffer+bufferCounter,1);

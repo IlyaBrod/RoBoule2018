@@ -4,6 +4,7 @@
 "stm32l4roboule\basic_i2c.o"
 "stm32l4roboule\basic_system.o"
 "stm32l4roboule\basic_usart.o"
+"stm32l4roboule\basic_pwm.o"
 "stm32l4roboule\stm32l4xx_hal_msp.o"
 "stm32l4roboule\stm32l4xx_it.o"
 "stm32l4roboule\main.o"

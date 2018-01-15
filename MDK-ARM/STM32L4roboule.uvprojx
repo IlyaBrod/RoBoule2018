@@ -405,6 +405,11 @@
               <FileType>1</FileType>
               <FilePath>..\Basic\basic_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>basic_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Basic\basic_pwm.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
