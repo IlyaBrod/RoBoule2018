@@ -12,3 +12,4 @@ int HC05_Test(void)
 	}
 	else return 0;
 }
+
