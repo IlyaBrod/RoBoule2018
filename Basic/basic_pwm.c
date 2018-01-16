@@ -8,6 +8,9 @@ void MX_TIM1_Init(void);
 void MX_TIM2_Init(void);
 void HAL_TIM_Init_GPIO(TIM_HandleTypeDef *htim);
 
+
+///////////////////////////////////////////////////////////////////////		INIT
+
 void basic_pwm_init(void)
 {
 	MX_TIM1_Init();
@@ -33,7 +36,7 @@ void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 10000;
+  htim1.Init.Period = PWM_PERIOD;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -51,7 +54,7 @@ void MX_TIM1_Init(void)
   HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig);
  
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 1000;
+  sConfigOC.Pulse = PWM_PERIOD/10;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -86,7 +89,7 @@ void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 10000;
+  htim2.Init.Period = PWM_PERIOD;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   HAL_TIM_Base_Init(&htim2);
@@ -102,7 +105,7 @@ void MX_TIM2_Init(void)
   HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 1000;
+  sConfigOC.Pulse = PWM_PERIOD/10;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2);
@@ -139,9 +142,6 @@ void HAL_TIM_Init_GPIO(TIM_HandleTypeDef* htim)
     GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN TIM1_MspPostInit 1 */
-
-  /* USER CODE END TIM1_MspPostInit 1 */
   }
   else if(htim->Instance==TIM2)
   {
@@ -159,12 +159,20 @@ void HAL_TIM_Init_GPIO(TIM_HandleTypeDef* htim)
     GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN TIM2_MspPostInit 1 */
-
-  /* USER CODE END TIM2_MspPostInit 1 */
   }
 }
 
+///////////////////////////////////////////////////////////////////////		INIT
+void basic_pwmA_write(float rate)
+{
+	__HAL_TIM_GET_AUTORELOAD(&htim2);
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, rate*PWM_PERIOD);
+}
 
 
+void basic_pwmB_write(float rate)
+{
+	__HAL_TIM_GET_AUTORELOAD(&htim1);
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, (1-rate)*PWM_PERIOD);
+}
 

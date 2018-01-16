@@ -27,7 +27,7 @@ int main(void)
 	basic_init_gpio();
 //	basic_i2c_init();
 	basic_led_init();
-//	basic_usart2_init(38400);
+  basic_usart2_init(38400);
 	
 	//IMU6050_Init();
 	//IMU6050_Test_Sensor();
@@ -42,18 +42,25 @@ int main(void)
 	}*/
 	
 	
-	//basic_usart2_send(data,4);
-//	HAL_Delay(2);
-//	basic_usart2_read(recev,10);
+	  basic_usart2_send(data,4);
+  	HAL_Delay(2);
+  	basic_usart2_read(recev,10);
 	
 	HAL_Delay(2);
 	basic_pwm_init();
+	/*
+	basic_pwmB_write(0);
+	HAL_Delay(2000);
+	basic_pwmB_write(0.5);
+	HAL_Delay(2000);
+	basic_pwmB_write(0.75);*/
+	
 	
   while (1)
   {
 		//IMU6050_Get_Accel(accelVect);
 		
-		
+		basic_usart2_read(recev,10);
 		basic_led_on();
 		for(t=0;t<8000000;t++);
 		basic_led_off();

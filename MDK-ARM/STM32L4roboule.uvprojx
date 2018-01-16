@@ -550,6 +550,11 @@
               <FileType>1</FileType>
               <FilePath>..\App\HC05.c</FilePath>
             </File>
+            <File>
+              <FileName>L298N.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\L298N.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
