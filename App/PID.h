@@ -10,7 +10,7 @@
 */
 #define PROFONDEUR_KD 3
 
-typedef struct PID_Str
+typedef struct
 {
 	int kp,ki,kd;
 	int kp_stack,ki_stack,kd_stack;
@@ -19,17 +19,20 @@ typedef struct PID_Str
 	int command_out;
 	int command_out_overload;
 	int etat[PROFONDEUR_KD];
-}PID_Str ;
+
+}PID_Str;
 
 
-void PID_init (*PID_Str pid,int kp,int ki,int kd,int stack_overload);
-void kp_stack (*PID_Str pid);
-void ki_stack (*PID_Str pid);
-void kd_stack (*PID_Str pid);
-void command_edit (*PID_Str pid);
-void etat_edit(*PID_Str pid,int new_etat);
-void PID_filter(*PID_Str pid);
-void PID_full_update(*PID_Str pid,int etat,int command_in);
+void PID_init (PID_Str*,int kp,int ki,int kd,int stack_overload,int command_out_overload);
+void kp_stack (PID_Str* pid);
+void ki_stack (PID_Str* pid,float Te);
+void kd_stack (PID_Str* pid);
+void command_edit (PID_Str* pid);
+void etat_edit(PID_Str* pid,int new_etat);
+void PID_filter(PID_Str* pid,int Te);
+
+
+int PID_full_update(PID_Str* pid,int etat,int command_in,int Te);
 
 #endif
 
