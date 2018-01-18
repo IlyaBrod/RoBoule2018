@@ -19,14 +19,13 @@ void kp_stack (PID_Str* pid)
 
 void ki_stack (PID_Str* pid,float Te)
 {
-	pid->ki_stack += (pid->ki)*(int)(pid->etat[0]*Te);
+	pid->ki_stack += (pid->ki)*(int)((pid->command_in - pid->etat[0])*Te);
 	if (pid->ki_stack > pid->stack_overload) pid->ki_stack = pid->stack_overload;
 }
 
-void kd_stack (PID_Str* pid)
+void kd_stack (PID_Str* pid,float Te)
 {
-		pid->kd_stack = pid->kd*(pid->etat[0] - pid->etat[PROFONDEUR_KD-1]);
-
+		pid->kd_stack = pid->kd*(pid->etat[0] - pid->etat[PROFONDEUR_KD-1])/Te;
 }
 
 void command_edit (PID_Str* pid)
@@ -48,7 +47,7 @@ void etat_edit(PID_Str* pid,int new_etat)
 
 void PID_filter(PID_Str* pid,int Te)
 {
-	kd_stack(pid);
+	kd_stack(pid,Te);
 	ki_stack(pid,Te);
 	kp_stack(pid);
 }

@@ -73,3 +73,10 @@ void USART2_IRQHandler(void)
 	//HAL_NVIC_ClearPendingIRQ(USART2_IRQn);
 }
 
+
+uint8_t basic_usart2_read_last(void)
+{
+	return buffer[(bufferCounter-1)%READ_BUFFER_SIZE];
+}
+
+

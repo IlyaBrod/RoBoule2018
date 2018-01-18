@@ -26,7 +26,7 @@ typedef struct
 void PID_init (PID_Str*,int kp,int ki,int kd,int stack_overload,int command_out_overload);
 void kp_stack (PID_Str* pid);
 void ki_stack (PID_Str* pid,float Te);
-void kd_stack (PID_Str* pid);
+void kd_stack (PID_Str* pid,float Te);
 void command_edit (PID_Str* pid);
 void etat_edit(PID_Str* pid,int new_etat);
 void PID_filter(PID_Str* pid,int Te);

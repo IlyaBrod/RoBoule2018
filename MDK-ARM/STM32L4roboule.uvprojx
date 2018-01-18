@@ -555,6 +555,11 @@
               <FileType>1</FileType>
               <FilePath>..\App\L298N.c</FilePath>
             </File>
+            <File>
+              <FileName>SERVO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\SERVO.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

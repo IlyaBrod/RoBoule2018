@@ -36,5 +36,7 @@ void basic_usart2_send(uint8_t* data, uint16_t count);
 void basic_usart2_read(uint8_t* data, uint16_t count);
 
 
+uint8_t basic_usart2_read_last(void);
+
 
 #endif

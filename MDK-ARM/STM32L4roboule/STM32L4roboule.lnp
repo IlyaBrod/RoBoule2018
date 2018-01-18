@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp --branchpatch=sdcomp-29491-629360
+--cpu Cortex-M4.fp --branchpatch=sdcomp-29491-629360
 "stm32l4roboule\startup_stm32l432xx.o"
 "stm32l4roboule\basic_led.o"
 "stm32l4roboule\basic_i2c.o"
@@ -30,8 +30,8 @@
 "stm32l4roboule\imu6050.o"
 "stm32l4roboule\hc05.o"
 "stm32l4roboule\l298n.o"
-"stm32l4roboule\pid.o"
+"stm32l4roboule\servo.o"
 --library_type=microlib --strict --scatter "STM32L4roboule\STM32L4roboule.sct"
---diag_suppress=L6329 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "STM32L4roboule.map" -o STM32L4roboule\STM32L4roboule.axf

@@ -1,3 +1,10 @@
+/**
+	*	PWM Module control.
+	*	TIM1 : PB_1
+	*	TIM2 : PA_1
+	*
+	*/
+
 
 #ifndef BSP_PWM
 #define BSP_PWM

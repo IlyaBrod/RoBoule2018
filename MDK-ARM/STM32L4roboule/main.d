@@ -41,3 +41,5 @@ stm32l4roboule\main.o: ../Src/../Basic/basic_pwm.h
 stm32l4roboule\main.o: ../Src/../App/IMU6050.h
 stm32l4roboule\main.o: ../Src/../App/./IMU6050_registers.h
 stm32l4roboule\main.o: ../Src/../App/HC05.h
+stm32l4roboule\main.o: ../Src/../App/L298N.h
+stm32l4roboule\main.o: ../Src/../App/SERVO.h

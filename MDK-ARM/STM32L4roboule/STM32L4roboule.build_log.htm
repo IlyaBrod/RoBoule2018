@@ -22,16 +22,18 @@ Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
 C:\devstm\STMCUBEmx\RoBoule2018\MDK-ARM\STM32L4roboule.uvprojx
-Project File Date:  01/14/2018
+Project File Date:  01/15/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32L4roboule'
-compiling basic_usart.c...
 compiling main.c...
+../Src/main.c(24): warning:  #550-D: variable "curr_pwm" was set but never used
+    float curr_pwm=0;
+../Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=8976 RO-data=500 RW-data=16 ZI-data=1296  
-"STM32L4roboule\STM32L4roboule.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=9472 RO-data=500 RW-data=12 ZI-data=1372  
+"STM32L4roboule\STM32L4roboule.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -49,7 +51,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
