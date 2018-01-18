@@ -45,6 +45,13 @@ void etat_edit(PID_Str* pid,int new_etat)
 	pid->etat[0] = new_etat;
 }
 
+void etat_edit_f (PID_Str*  pid, float new_etat)
+{
+	int etat;
+	etat = (int)(new_etat * command_out_overload);
+	etat_edit(pid,etat);
+}
+
 void PID_filter(PID_Str* pid,int Te)
 {
 	kd_stack(pid,Te);
@@ -61,5 +68,11 @@ int PID_full_update(PID_Str* pid,int etat,int command_in,int Te)
 	return pid->command_out;
 }
 
-
-
+float PID_full_update_f (PID_Str* pid,float etat, float new_command,int Te)
+{
+	etat_edit_f(pid,etat);
+	pid->command_in = (int)(command_in*command_out_overload);
+	PID_filter(pid,Te);
+	command_edit(pid);
+	return ((float)pid->command_out /((float)command_out_overload));
+}

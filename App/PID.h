@@ -20,6 +20,8 @@ typedef struct
 	int command_out_overload;
 	int etat[PROFONDEUR_KD];
 
+	float command_out_f;
+	float command_in_f;
 }PID_Str;
 
 
@@ -29,10 +31,13 @@ void ki_stack (PID_Str* pid,float Te);
 void kd_stack (PID_Str* pid,float Te);
 void command_edit (PID_Str* pid);
 void etat_edit(PID_Str* pid,int new_etat);
+void etat_edit_f (PID_Str*  pid, float new_etat);
 void PID_filter(PID_Str* pid,int Te);
 
 
+
 int PID_full_update(PID_Str* pid,int etat,int command_in,int Te);
+float PID_full_update_f (PID_Str* pid,float etat, float new_command,int Te);
 
 #endif
 
